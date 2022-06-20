@@ -1,0 +1,8 @@
+id_servicio,descripcion,tipo,precioUnitario,cantidad,totalServicio
+51,ensamble vestido,Mayorista,860.,25,21500
+54,boton camisa,Mayorista,145.,120,17400
+60,cambio boton,Mayorista,70.,10,700.
+63,boton camisa,Mayorista,145.,120,17400
+72,boton camisa,Mayorista,145.,60,8700.
+73,cambio boton,Mayorista,70.,25,1750.
+74,ensamble vestido,Mayorista,860.,15,12900
