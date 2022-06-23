@@ -254,7 +254,7 @@ void Servicio_print(eServicio* this)
 									}
 								}
 
-								printf("%-6d||%-25s||%-12s\t||%-15.2f\t||%-6d\t||%.2f\n", id, descripcion, tipoString, precioUnitario, cantidad, precioTotal);
+								printf("||%-6d||%-25s||%-12s\t||%-15.2f\t||%-6d\t||%.2f\n", id, descripcion, tipoString, precioUnitario, cantidad, precioTotal);
 							}
 						}
 					}

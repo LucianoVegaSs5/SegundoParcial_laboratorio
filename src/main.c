@@ -20,6 +20,7 @@ int main(void) {
 
 	int opcion;
 	int cargaArchivo = 1;
+	int mapeado = 0;
 	LinkedList* listaServicios = ll_newLinkedList();
 
 	do{
@@ -41,7 +42,7 @@ int main(void) {
 				}
 				break;
 			case 3:
-				if(controller_completarPrecioTotal(listaServicios) !=  1)
+				if(controller_completarPrecioTotal(listaServicios, &mapeado) !=  1)
 				{
 					printf("\nOcurrio un error al calcular los precios totales\n");
 				}
@@ -59,7 +60,7 @@ int main(void) {
 				}
 				break;
 			case 6:
-				if(controller_guardarServicios(listaServicios) != 1)
+				if(controller_guardarServicios(listaServicios, mapeado) != 1)
 				{
 					printf("\nOcurrio un error guardar el archivo con servicios\n");
 				}

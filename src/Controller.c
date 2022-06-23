@@ -93,9 +93,9 @@ int controller_listServicios(LinkedList* pListaServicios)
 	if(ll_isEmpty(pListaServicios) == 0)
 	{
 		len = ll_len(pListaServicios);
-		printf("=======================================================================================================\n");
-		printf("ID            DESCRIPCION              TIPO 	     PRECIO UNITARIO 	    CANTIDAD	   PRECIO TOTAL    \n");
-		printf("=======================================================================================================\n");
+		printf("=================================================================================================================\n");
+		printf("   ID          DESCRIPCION                  TIPO 	     PRECIO UNITARIO 	     CANTIDAD	    PRECIO TOTAL    \n");
+		printf("=================================================================================================================\n");
 		for(int i =0; i<len; i++ )
 		{
 			servicio = ll_get(pListaServicios, i);
@@ -105,7 +105,7 @@ int controller_listServicios(LinkedList* pListaServicios)
 			}
 			retorno = 1;
 		}
-		printf("=======================================================================================================\n");
+		printf("==========================================================================================================\n");
 
 	}
 	else
@@ -120,7 +120,7 @@ int controller_listServicios(LinkedList* pListaServicios)
 	return retorno;
 }
 
-int controller_completarPrecioTotal(LinkedList* pListaServicios)
+int controller_completarPrecioTotal(LinkedList* pListaServicios, int* mapHecho)
 {
 	int retorno = -1;
 	LinkedList* listaMapeada = NULL;
@@ -134,6 +134,7 @@ int controller_completarPrecioTotal(LinkedList* pListaServicios)
 			{
 				printf("\nLos precios totales han sido asignados\n");
 				retorno = 1;
+				*mapHecho = 1;
 			}
 		}
 		else
@@ -222,30 +223,56 @@ int controller_mostrarServicios(LinkedList* pListaServicios)
 {
 	int retorno = -1;
 	int len;
+	int lista;
 	eServicio* servicio;
 
 	if(ll_isEmpty(pListaServicios) == 0)
 	{
-		if(ordenarPorDescripcion(pListaServicios))
+		preguntarLista(&lista);
+
+		len = ll_len(pListaServicios);
+		if(lista == 1)
 		{
-			len = ll_len(pListaServicios);
-			printf("================================\n");
-			printf("            SERVICIOS           \n");
-			printf("================================\n");
-			for(int i =0; i<len; i++ )
+			if(ordenarPorDescripcion(pListaServicios))
 			{
-				servicio = ll_get(pListaServicios, i);
-				if(servicio != NULL)
+				printf("================================\n");
+				printf("            SERVICIOS           \n");
+				printf("================================\n");
+				for(int i =0; i<len; i++ )
 				{
-					mostrarSoloDescripcion(servicio);
-					retorno = 1;
+					servicio = ll_get(pListaServicios, i);
+					if(servicio != NULL)
+					{
+						mostrarSoloDescripcion(servicio);
+						retorno = 1;
+					}
 				}
+				printf("================================\n");
 			}
-			printf("================================\n");
+			else
+			{
+				printf("Ocurrio un error al mostrar al ordenar los servicios\n");
+			}
 		}
 		else
 		{
-			printf("Ocurrio un error al mostrar al ordenar los servicios\n");
+			if(ordenarPorDescripcion(pListaServicios))
+			{
+				printf("=================================================================================================================\n");
+				printf("   ID          DESCRIPCION                  TIPO 	     PRECIO UNITARIO 	     CANTIDAD	    PRECIO TOTAL    \n");
+				printf("=================================================================================================================\n");
+				for(int i = 0; i<len; i++ )
+				{
+					servicio = ll_get(pListaServicios, i);
+					if(servicio != NULL)
+					{
+						retorno = 1;
+						Servicio_print(servicio);
+					}
+
+				}
+				printf("=======================================================================================================\n");
+			}
 		}
 
 	}
@@ -261,20 +288,45 @@ int controller_mostrarServicios(LinkedList* pListaServicios)
 	return retorno;
 }
 
-int controller_guardarServicios(LinkedList* pListaServicios)
+int controller_guardarServicios(LinkedList* pListaServicios, int mapeado)
 {
 	int retorno = -1;
+	int mapear;
+	LinkedList* listaMapeada = NULL;
 
 	if(pListaServicios != NULL)
 	{
 		if(ll_isEmpty(pListaServicios) == 0)
 		{
-			if(ordenarPorDescripcion(pListaServicios))
+			if(mapeado)
 			{
-				if(cargarDescripciones(pListaServicios))
+				if(ordenarPorDescripcion(pListaServicios))
+				{
+					if(cargarArchivoOrdenado(pListaServicios))
+					{
+						retorno = 1;
+					}
+				}
+			}
+			else
+			{
+				preguntarMap(&mapear);
+				if(mapear == 1)
+				{
+					listaMapeada = ll_map(pListaServicios,calcularTotal);
+					if(listaMapeada != NULL)
+					{
+						printf("\nLos precios totales han sido asignados\n");
+						retorno = 1;
+						mapeado = 1;
+					}
+				}
+
+				if(cargarArchivoOrdenado(pListaServicios))
 				{
 					retorno = 1;
 				}
+
 			}
 		}
 		else

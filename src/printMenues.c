@@ -12,6 +12,14 @@
 #include <ctype.h>
 #include "input-UTN.h"
 
+void preguntarLista(int* lista)
+{
+	pedirNumeros(lista, "\Desea ver:\n"
+					"1) Solo descripciones\n"
+					"2) Lista completa\n", "Error, elija una opcion valida\n", "Error, elija una opcion entre 1 y 2\n", 2, 1);
+}
+
+
 void preguntarOrden(int* orden)
 {
 	pedirNumeros(orden, "\nOrdenar de manera:\n"
@@ -58,6 +66,13 @@ void guardarCambios(int* confirmar)
 void preguntaContinuar(int* continuar)
 {
 	pedirNumeros(continuar, "¿Desea continuar? \n"
+			"1- Si\n"
+			"2- No\n","Error, debe ingresar (1-2)\n", "Error, escoja una opcion valida", 2, 1);
+}
+
+void preguntarMap(int* opcion)
+{
+	pedirNumeros(opcion, "\nEl campo de Precio Total aún no ha sido completado ¿Desea cargarlo?\n"
 			"1- Si\n"
 			"2- No\n","Error, debe ingresar (1-2)\n", "Error, escoja una opcion valida", 2, 1);
 }

@@ -28,7 +28,7 @@ int controller_listServicios(LinkedList* pListaServicios);
  * @param pListaServicios
  * @return 1 si esta todo bien, -1 si algo salio mal
  */
-int controller_completarPrecioTotal(LinkedList* pListaServicios);
+int controller_completarPrecioTotal(LinkedList* pListaServicios, int* mapHecho);
 
 /**
  * Pregunta que tipo de servicio quiere filtrar el usuario para luego crear un archivo
@@ -56,6 +56,6 @@ int controller_mostrarServicios(LinkedList* pListaServicios);
  * @param pListaServicios
  * @return 1 si esta todo bien, -1 si algo salio mal
  */
-int controller_guardarServicios(LinkedList* pListaServicios);
+int controller_guardarServicios(LinkedList* pListaServicios, int mapeado);
 
 #endif /* CONTROLLER_H_ */

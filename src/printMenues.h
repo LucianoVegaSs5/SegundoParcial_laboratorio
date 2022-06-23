@@ -63,4 +63,15 @@ void preguntaContinuar(int* continuar);
  */
 void preguntarSort(int* sort);
 
+/**
+ * Le pregunta al usuario que lista desea ver
+ * @param lista
+ */
+void preguntarLista(int* lista);
+
+/**
+ * Pregunta si el usuario quiere completar el ultim campo
+ * @param opcion
+ */
+void preguntarMap(int* opcion);
 

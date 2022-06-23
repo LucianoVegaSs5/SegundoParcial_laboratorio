@@ -25,4 +25,11 @@ int generarArchivoFiltrado(LinkedList* listaFiltrada, char* nombreDelArchivo, ch
  */
 int cargarDescripciones(LinkedList* pArrayListaServicios);
 
+/**
+ * Genera un archivo con todos los datos de los servicios ordenados pordescripcion
+ * @param pArrayListaServicios
+ * @return1 si esta todo bien, -1 si algo salio mal
+ */
+int cargarArchivoOrdenado(LinkedList* pArrayListaServicios);
+
 #endif /* ARCHIVOS_H_ */
